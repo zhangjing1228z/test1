@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 大模型介绍 - 探索人工智能的未来</title>
+    <style>
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* 跳过导航链接 - 无障碍功能 */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 16px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 导航栏 */
+        nav {
+            background: var(--bg-white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 1rem;
+        }
+
+        nav li {
+            margin: 0.5rem 1rem;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            background-color: var(--primary-color);
+            color: white;
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        /* 主要内容区域 */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            background: var(--bg-white);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        section h3 {
+            color: var(--secondary-color);
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 特性卡片 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--bg-light);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover,
+        .feature-card:focus-within {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: var(--accent-color);
+        }
+
+        .feature-card h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+        }
+
+        /* 应用示例 */
+        .applications-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .applications-list li {
+            background: var(--bg-light);
+            margin-bottom: 1rem;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--bg-light);
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        tr:hover {
+            background-color: var(--bg-light);
+        }
+
+        /* 引用块 */
+        blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        /* 页脚 */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        footer a:hover,
+        footer a:focus {
+            color: white;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
+        /* 高对比度模式支持 */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary-color: #0000ff;
+                --secondary-color: #000080;
+                --accent-color: #0000cd;
+                --text-dark: #000000;
+                --text-light: #333333;
+                --bg-light: #ffffff;
+                --bg-white: #ffffff;
+                --border-color: #000000;
+            }
+        }
+
+        /* 减少动画支持 */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* 焦点可见性增强 */
+        *:focus {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        button:focus,
+        a:focus {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 跳过导航链接，方便键盘用户 -->
+    <a href="#main-content" class="skip-link">跳到主要内容</a>
+
+    <!-- 头部区域 -->
+    <header role="banner">
+        <h1>🤖 AI 大模型</h1>
+        <p>探索人工智能的前沿技术，了解大语言模型如何改变我们的世界</p>
+    </header>
+
+    <!-- 导航栏 -->
+    <nav role="navigation" aria-label="主导航">
+        <ul>
+            <li><a href="#what-is-ai">什么是 AI 大模型</a></li>
+            <li><a href="#how-it-works">工作原理</a></li>
+            <li><a href="#applications">应用领域</a></li>
+            <li><a href="#comparison">模型对比</a></li>
+            <li><a href="#future">未来发展</a></li>
+        </ul>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main id="main-content" role="main">
+        <!-- 什么是 AI 大模型 -->
+        <section id="what-is-ai" aria-labelledby="what-is-ai-heading">
+            <h2 id="what-is-ai-heading">什么是 AI 大模型？</h2>
+            <p>AI 大模型（Large Language Models, LLMs）是基于深度学习技术训练的人工智能模型，它们拥有数十亿甚至数千亿个参数，能够理解和生成人类语言。</p>
+            
+            <p>这些模型通过在海量文本数据上进行预训练，学习到了语言的规律、知识和推理能力，可以完成各种复杂的自然语言处理任务。</p>
+
+            <div class="features-grid">
+                <article class="feature-card">
+                    <h3><span class="feature-icon" aria-hidden="true">📚</span> 海量知识</h3>
+                    <p>通过训练数据学习了互联网上的大量知识，涵盖科学、技术、文化等多个领域。</p>
+                </article>
+
+                <article class="feature-card">
+                    <h3><span class="feature-icon" aria-hidden="true">💬</span> 自然对话</h3>
+                    <p>能够理解上下文，进行流畅的多轮对话，像人类一样交流。</p>
+                </article>
+
+                <article class="feature-card">
+                    <h3><span class="feature-icon" aria-hidden="true">🎯</span> 多任务处理</h3>
+                    <p>可以完成写作、翻译、编程、分析等多种任务，具有通用性。</p>
+                </article>
+
+                <article class="feature-card">
+                    <h3><span class="feature-icon" aria-hidden="true">🧠</span> 推理能力</h3>
+                    <p>具备一定的逻辑推理和问题解决能力，能够处理复杂任务。</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- 工作原理 -->
+        <section id="how-it-works" aria-labelledby="how-it-works-heading">
+            <h2 id="how-it-works-heading">工作原理</h2>
+            
+            <h3>1. 预训练阶段</h3>
+            <p>模型在大规模的文本数据上进行无监督学习，学习语言的统计规律和知识表示。这个阶段需要大量的计算资源和时间。</p>
+
+            <h3>2. 微调阶段</h3>
+            <p>在特定任务的数据集上进行有监督微调，使模型更好地适应具体应用场景，如问答、写作、编程等。</p>
+
+            <h3>3. 对齐优化</h3>
+            <p>通过人类反馈强化学习（RLHF）等技术，让模型的输出更符合人类的价值观和期望，提高安全性和有用性。</p>
+
+            <blockquote>
+                "AI 大模型的核心是 Transformer 架构，它通过自注意力机制（Self-Attention）捕捉文本中词语之间的长距离依赖关系。"
+            </blockquote>
+
+            <h3>关键技术</h3>
+            <ul>
+                <li><strong>Transformer 架构：</strong> 基于注意力机制的神经网络结构</li>
+                <li><strong>词嵌入（Embedding）：</strong> 将词语转换为向量表示</li>
+                <li><strong>位置编码：</strong> 为序列中的位置提供信息</li>
+                <li><strong>层归一化：</strong> 加速训练并提高稳定性</li>
+            </ul>
+        </section>
+
+        <!-- 应用领域 -->
+        <section id="applications" aria-labelledby="applications-heading">
+            <h2 id="applications-heading">应用领域</h2>
+            <p>AI 大模型正在深刻改变各个行业，以下是主要的应用场景：</p>
+
+            <ul class="applications-list">
+                <li>
+                    <strong>📝 内容创作：</strong> 辅助写作、生成文章、创作诗歌、编写故事等
+                </li>
+                <li>
+                    <strong>💻 代码开发：</strong> 代码生成、调试、解释、转换编程语言
+                </li>
+                <li>
+                    <strong>🌐 翻译服务：</strong> 多语言实时翻译，打破语言障碍
+                </li>
+                <li>
+                    <strong>🎓 教育辅导：</strong> 个性化学习、答疑解惑、作业批改
+                </li>
+                <li>
+                    <strong>🏥 医疗健康：</strong> 辅助诊断、病历分析、医学研究
+                </li>
+                <li>
+                    <strong>⚖️ 法律服务：</strong> 合同审查、法律检索、案例分析和判决预测
+                </li>
+                <li>
+                    <strong>💼 客户服务：</strong> 智能客服、问题解答、投诉处理
+                </li>
+                <li>
+                    <strong>📊 数据分析：</strong> 信息提取、趋势分析、报告生成
+                </li>
+            </ul>
+        </section>
+
+        <!-- 模型对比 -->
+        <section id="comparison" aria-labelledby="comparison-heading">
+            <h2 id="comparison-heading">主流大模型对比</h2>
+            <p>以下是当前知名的 AI 大模型及其特点：</p>
+
+            <table aria-label="主流大模型对比表">
+                <thead>
+                    <tr>
+                        <th scope="col">模型名称</th>
+                        <th scope="col">开发机构</th>
+                        <th scope="col">主要特点</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GPT-4</td>
+                        <td>OpenAI</td>
+                        <td>强大的推理能力，多模态支持，广泛的应用生态</td>
+                    </tr>
+                    <tr>
+                        <td>Claude 3</td>
+                        <td>Anthropic</td>
+                        <td>注重安全性，长上下文理解，优秀的写作能力</td>
+                    </tr>
+                    <tr>
+                        <td>Gemini</td>
+                        <td>Google</td>
+                        <td>原生多模态，与谷歌生态深度集成，免费使用</td>
+                    </tr>
+                    <tr>
+                        <td>通义千问</td>
+                        <td>阿里巴巴</td>
+                        <td>中文能力强，开源版本丰富，本地部署友好</td>
+                    </tr>
+                    <tr>
+                        <td>文心一言</td>
+                        <td>百度</td>
+                        <td>中文理解优秀，与百度搜索整合，企业应用广泛</td>
+                    </tr>
+                    <tr>
+                        <td>Llama 3</td>
+                        <td>Meta</td>
+                        <td>开源模型，社区活跃，可自由定制和商用</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 未来发展 -->
+        <section id="future" aria-labelledby="future-heading">
+            <h2 id="future-heading">未来发展趋势</h2>
+            
+            <h3>技术演进方向</h3>
+            <ul>
+                <li><strong>更大的规模：</strong> 参数量持续增长，能力提升</li>
+                <li><strong>多模态融合：</strong> 文本、图像、音频、视频的 unified 处理</li>
+                <li><strong>更高效的推理：</strong> 降低计算成本，提高响应速度</li>
+                <li><strong>更好的对齐：</strong> 更安全、更可靠、更符合人类价值观</li>
+                <li><strong>专业化发展：</strong> 针对特定领域的垂直模型</li>
+            </ul>
+
+            <h3>社会影响</h3>
+            <p>AI 大模型将深刻影响人类社会：</p>
+            <ul>
+                <li>提高生产力，自动化重复性工作</li>
+                <li>促进教育公平，提供个性化学习</li>
+                <li>加速科学研究，辅助创新发现</li>
+                <li>带来就业结构变化，需要技能转型</li>
+                <li>引发伦理和安全讨论，需要规范治理</li>
+            </ul>
+
+            <blockquote>
+                "AI 不是要取代人类，而是要增强人类的能力。关键在于我们如何善用这项技术。"
+            </blockquote>
+        </section>
+
+        <!-- 常见问题 -->
+        <section id="faq" aria-labelledby="faq-heading">
+            <h2 id="faq-heading">常见问题 FAQ</h2>
+            
+            <details>
+                <summary><strong>AI 大模型会取代人类工作吗？</strong></summary>
+                <p>AI 更可能改变工作方式而非完全取代。它会自动化重复性任务，让人类专注于创造性、策略性和情感性的工作。历史上每次技术革命都会创造新的就业机会。</p>
+            </details>
+
+            <details>
+                <summary><strong>大模型的回答可靠吗？</strong></summary>
+                <p>大模型可能产生"幻觉"（编造信息）。对于重要决策，建议核实关键信息，结合专业知识和多个来源进行判断。</p>
+            </details>
+
+            <details>
+                <summary><strong>如何使用 AI 大模型？</strong></summary>
+                <p>可以通过官方网站、API 接口、应用程序等多种方式使用。许多平台提供免费试用，建议从简单任务开始，逐步探索最佳实践。</p>
+            </details>
+
+            <details>
+                <summary><strong>数据隐私安全吗？</strong></summary>
+                <p>使用时应注意不上传敏感个人信息。选择可信的平台，了解其隐私政策。企业应用时可考虑私有化部署方案。</p>
+            </details>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer role="contentinfo">
+        <p>&copy; 2024 AI 大模型介绍网页 | 旨在普及人工智能知识</p>
+        <p>本页面遵循 <a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener noreferrer">WCAG 2.1</a> 无障碍指南设计</p>
+    </footer>
+
+    <!-- 平滑滚动脚本 -->
+    <script>
+        // 为所有内部链接添加平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // 设置焦点到目标元素，方便键盘用户
+                    targetElement.setAttribute('tabindex', '-1');
+                    targetElement.focus();
+                }
+            });
+        });
+
+        // 为 details 元素添加键盘可访问性提示
+        document.querySelectorAll('details').forEach(detail => {
+            detail.addEventListener('toggle', () => {
+                const summary = detail.querySelector('summary');
+                if (detail.open) {
+                    summary.setAttribute('aria-expanded', 'true');
+                } else {
+                    summary.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            // 初始化 aria-expanded 属性
+            const summary = detail.querySelector('summary');
+            summary.setAttribute('aria-expanded', detail.open ? 'true' : 'false');
+        });
+    </script>
+</body>
+</html>
